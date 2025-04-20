@@ -9,6 +9,14 @@ const CALL_SOCKET = 'call';
 const STRAM_SOCKET = 'stream';
 const ADD_PEER = 'ADD_PEER';
 const REMOVE_PEER = 'REMOVE_PEER';
+const START_YOUTUBE_STREAM = "start-youtube-stream";
+const STOP_YOUTUBE_STREAM = "stop-youtube-stream";
+const STREAMING_STATUS = "streaming-status";
+const GET_ROUTER_RTP_CAPABILITIES = 'get-router-rtp-capabilities';
+const CREATE_WEBRTC_TRANSPORT = 'create-webrtc-transport';
+const CONNECT_WEBRTC_TRANSPORT = 'connect-webrtc-transport';
+const PRODUCE = 'produce';
+const CONSUME = 'consume';
 
 export {
     SOCKET_SERVER,
@@ -21,5 +29,13 @@ export {
     CALL_SOCKET,
     STRAM_SOCKET,
     ADD_PEER,
-    REMOVE_PEER
+    REMOVE_PEER,
+    START_YOUTUBE_STREAM,
+    STOP_YOUTUBE_STREAM,
+    STREAMING_STATUS,
+    GET_ROUTER_RTP_CAPABILITIES,
+    CREATE_WEBRTC_TRANSPORT,
+    CONNECT_WEBRTC_TRANSPORT,
+    PRODUCE,
+    CONSUME,
 };

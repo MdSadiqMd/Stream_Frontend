@@ -1,11 +1,13 @@
 "use client";
 import type React from "react";
-import { useState } from "react";
+import { useState, useContext } from "react";
 import { Mic, MicOff, Video, VideoOff, PhoneOff, Copy } from "lucide-react";
 
 import UserFeedPlayer from "./UserFeedPlayer";
+import YouTubeStream from "./youtube-stream";
 import { Button } from "@/components/ui/button";
 import { cn } from "@/lib/utils";
+import { SocketContext } from "@/context/SocketContext";
 
 interface VideoCallLayoutProps {
     localStream?: MediaStream;
@@ -15,6 +17,7 @@ interface VideoCallLayoutProps {
 }
 
 const VideoCallLayout: React.FC<VideoCallLayoutProps> = ({ localStream, remoteStreams, onLeaveCall, roomId }) => {
+    const { socket } = useContext(SocketContext);
     const [isAudioMuted, setIsAudioMuted] = useState(false);
     const [isVideoOff, setIsVideoOff] = useState(false);
     const [isCopied, setIsCopied] = useState(false);
@@ -113,6 +116,10 @@ const VideoCallLayout: React.FC<VideoCallLayoutProps> = ({ localStream, remoteSt
                     >
                         {isVideoOff ? <VideoOff size={20} /> : <Video size={20} />}
                     </Button>
+
+                    {roomId && socket && (
+                        <YouTubeStream roomId={roomId} socket={socket} />
+                    )}
 
                     <Button
                         onClick={onLeaveCall}
