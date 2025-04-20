@@ -1,13 +1,15 @@
-"use client"
+"use client";
 import { useContext, useEffect } from "react";
-import { useParams } from "next/navigation";
+import type React from "react";
+import { useParams, useRouter } from "next/navigation";
 
 import { SocketContext } from "@/context/SocketContext";
-import UserFeedPlayer from "@/components/UserFeedPlayer";
+import VideoCallLayout from "@/components/video-call-layout";
 import { JOINED_SOCKET } from "@/constants/constants";
 
 const Room: React.FC = () => {
     const { id } = useParams();
+    const router = useRouter();
     const { socket, user, stream, peers } = useContext(SocketContext);
 
     useEffect(() => {
@@ -16,20 +18,23 @@ const Room: React.FC = () => {
         }
     }, [id, user, socket]);
 
+    const handleLeaveCall = () => {
+        if (user) {
+            router.push("/");
+        }
+    };
+
+    const remoteStreams = Object.values(peers).map((peer) => (peer as any).stream);
+
     return (
-        <>
-            <h1>Room: {id}</h1>
-            <UserFeedPlayer stream={stream} />
-            <div>
-                {
-                    Object.keys(peers).map((peerId) => (
-                        <>
-                            <UserFeedPlayer key={peerId} stream={peers[peerId].stream} />
-                        </>
-                    ))
-                }
-            </div>
-        </>
+        <div className="h-screen bg-zinc-950">
+            <VideoCallLayout
+                localStream={stream}
+                remoteStreams={remoteStreams}
+                onLeaveCall={handleLeaveCall}
+                roomId={id as string}
+            />
+        </div>
     );
 };
 
