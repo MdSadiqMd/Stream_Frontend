@@ -9,6 +9,10 @@ const CALL_SOCKET = 'call';
 const STRAM_SOCKET = 'stream';
 const ADD_PEER = 'ADD_PEER';
 const REMOVE_PEER = 'REMOVE_PEER';
+const START_YOUTUBE_STREAM = 'start-youtube-stream';
+const STOP_YOUTUBE_STREAM = 'stop-youtube-stream';
+const STREAMING_STATUS = 'streaming-status';
+const BINARY_STREAM = 'binarystream';
 
 export {
     SOCKET_SERVER,
@@ -21,5 +25,9 @@ export {
     CALL_SOCKET,
     STRAM_SOCKET,
     ADD_PEER,
-    REMOVE_PEER
+    REMOVE_PEER,
+    START_YOUTUBE_STREAM,
+    STOP_YOUTUBE_STREAM,
+    STREAMING_STATUS,
+    BINARY_STREAM
 };

@@ -4,6 +4,7 @@ import { useState } from "react";
 import { Mic, MicOff, Video, VideoOff, PhoneOff, Copy } from "lucide-react";
 
 import UserFeedPlayer from "./UserFeedPlayer";
+import YouTubeStream from "./youtube-stream";
 import { Button } from "@/components/ui/button";
 import { cn } from "@/lib/utils";
 
@@ -41,7 +42,7 @@ const VideoCallLayout: React.FC<VideoCallLayoutProps> = ({ localStream, remoteSt
 
     const copyMeetingId = () => {
         if (roomId) {
-            navigator.clipboard.writeText(roomId);
+            navigator.clipboard.writeText(`http://localhost:3000/room/${roomId}`);
             setIsCopied(true);
             setTimeout(() => setIsCopied(false), 2000);
         }
@@ -51,17 +52,20 @@ const VideoCallLayout: React.FC<VideoCallLayoutProps> = ({ localStream, remoteSt
         <div className="flex flex-col h-full bg-zinc-950 text-zinc-100">
             {roomId && (
                 <div className="bg-zinc-900 p-3 shadow-md border-b border-zinc-800">
-                    <div className="flex items-center justify-between">
+                    <div className="flex items-center justify-between max-w-7xl mx-auto">
                         <h1 className="text-lg font-medium text-zinc-100">Meeting: {roomId}</h1>
-                        <Button
-                            variant="outline"
-                            size="sm"
-                            onClick={copyMeetingId}
-                            className="bg-zinc-800 border-zinc-700 text-zinc-100 hover:bg-zinc-700 hover:text-zinc-50"
-                        >
-                            <Copy size={14} className="mr-2" />
-                            {isCopied ? "Copied!" : "Copy ID"}
-                        </Button>
+                        <div className="flex items-center gap-2">
+                            {roomId && <YouTubeStream roomId={roomId} />}
+                            <Button
+                                variant="outline"
+                                size="sm"
+                                onClick={copyMeetingId}
+                                className="bg-zinc-800 border-zinc-700 text-zinc-100 hover:bg-zinc-700 hover:text-zinc-50"
+                            >
+                                <Copy size={14} className="mr-2" />
+                                {isCopied ? "Copied!" : "Copy ID"}
+                            </Button>
+                        </div>
                     </div>
                 </div>
             )}
