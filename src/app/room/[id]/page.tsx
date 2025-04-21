@@ -7,6 +7,8 @@ import { SocketContext } from "@/context/SocketContext";
 import VideoCallLayout from "@/components/video-call-layout";
 import { JOINED_SOCKET } from "@/constants/constants";
 
+export const runtime = 'edge';
+
 const Room: React.FC = () => {
     const { id } = useParams();
     const router = useRouter();
