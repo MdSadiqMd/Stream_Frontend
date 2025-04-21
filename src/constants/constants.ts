@@ -1,4 +1,4 @@
-const SOCKET_SERVER = process.env.NEXT_PUBLIC_SOCKET_SERVER || 4000;
+const SOCKET_SERVER = process.env.NEXT_PUBLIC_SOCKET_SERVER || 'http://localhost:4000';
 const ROOM_SOCKET = 'room-created';
 const USERS_SOCKET = 'get-users';
 const JOINED_SOCKET = 'joined-room';

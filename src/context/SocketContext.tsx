@@ -13,7 +13,7 @@ import { addPeerAction } from '@/Actions/peer.action';
 
 export const SocketContext = createContext<any | null>(null);
 
-const socket = SocketIOClient('http://localhost:4000', {
+const socket = SocketIOClient(SOCKET_SERVER, {
     withCredentials: false,
     transports: ['polling', 'websocket']
 });
