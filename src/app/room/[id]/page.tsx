@@ -16,6 +16,7 @@ const Room: React.FC = () => {
 
     useEffect(() => {
         if (user) {
+            console.log(`Joining room ${id} with user ${user._id}`);
             socket.emit(JOINED_SOCKET, { roomId: id, peerId: user._id });
         }
     }, [id, user, socket]);
@@ -31,7 +32,7 @@ const Room: React.FC = () => {
     return (
         <div className="h-screen bg-zinc-950">
             <VideoCallLayout
-                localStream={stream}
+                localStream={stream as MediaStream}
                 remoteStreams={remoteStreams}
                 onLeaveCall={handleLeaveCall}
                 roomId={id as string}
